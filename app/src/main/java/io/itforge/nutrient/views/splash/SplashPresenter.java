@@ -13,15 +13,8 @@ import io.itforge.nutrient.repositories.IProductRepository;
 import io.itforge.nutrient.repositories.ProductRepository;
 import io.itforge.nutrient.utils.Utils;
 
-/**
- * Created by Lobster on 03.03.18.
- */
-
 public class SplashPresenter implements ISplashPresenter.Actions {
 
-    /**
-     * Mutiplied by 6*30* to reduce the issue. TODO: fix https://github.com/openfoodfacts/openfoodfacts-androidapp/issues/1616
-     */
     private final Long REFRESH_PERIOD = 6 * 30 * 24 * 60 * 60 * 1000L;
 
     private ISplashPresenter.View view;

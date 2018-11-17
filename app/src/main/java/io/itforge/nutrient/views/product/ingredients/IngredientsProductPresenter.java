@@ -13,10 +13,6 @@ import io.itforge.nutrient.utils.ProductInfoState;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * Created by Lobster on 17.03.18.
- */
-
 public class IngredientsProductPresenter implements IIngredientsProductPresenter.Actions {
 
     private IProductRepository repository = ProductRepository.getInstance();
