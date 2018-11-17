@@ -14,9 +14,6 @@ import android.widget.LinearLayout;
 
 import io.reactivex.annotations.NonNull;
 
-/**
- * Created by Manav on 2/28/2018.
- */
 
 public class FastScroller extends LinearLayout {
 
