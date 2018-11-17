@@ -50,9 +50,6 @@ public class HomeFragment extends NavigationBaseFragment {
     @BindView(R.id.buttonScan)
     FloatingActionButton mButtonScan;
 
-//    @BindView(R.id.textHome)
-//    TextView textHome;
-
     private OpenFoodAPIService apiClient;
     private SharedPreferences sp;
 
