@@ -7,10 +7,6 @@ import io.itforge.nutrient.models.CategoryName;
 import io.itforge.nutrient.utils.SearchType;
 import io.itforge.nutrient.views.ProductBrowsingListActivity;
 
-/**
- * Created by Abdelali Eramli on 27/12/2017.
- */
-
 public class CategoryViewHolder extends RecyclerView.ViewHolder {
     private final CategoryRecyclerItemBinding binding;
 

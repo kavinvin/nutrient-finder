@@ -8,10 +8,6 @@ import java.util.List;
 import io.itforge.nutrient.models.CategoryName;
 import io.itforge.nutrient.views.category.adapter.CategoryListRecyclerAdapter;
 
-/**
- * Created by Abdelali Eramli on 27/12/2017.
- */
-
 public class RecyclerBindingAdapter {
     @BindingAdapter({"categories"})
     public static void setStations(RecyclerView recyclerView, List<CategoryName> categoryList) {

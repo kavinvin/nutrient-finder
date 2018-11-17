@@ -9,9 +9,6 @@ import java.util.List;
 import io.itforge.nutrient.databinding.CategoryRecyclerItemBinding;
 import io.itforge.nutrient.models.CategoryName;
 
-/**
- * Created by Abdelali Eramli on 27/12/2017.
- */
 
 public class CategoryListRecyclerAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
     private final List<CategoryName> categories;
