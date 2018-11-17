@@ -81,7 +81,6 @@ import io.itforge.nutrient.R;
 import io.itforge.nutrient.fragments.AllergensAlertFragment;
 import io.itforge.nutrient.fragments.FindProductFragment;
 import io.itforge.nutrient.fragments.HomeFragment;
-import io.itforge.nutrient.fragments.OfflineEditFragment;
 import io.itforge.nutrient.fragments.PreferencesFragment;
 import io.itforge.nutrient.models.LabelNameDao;
 import io.itforge.nutrient.models.OfflineSavedProductDao;
@@ -111,8 +110,6 @@ public class MainActivity extends BaseActivity implements CustomTabActivityHelpe
     private static final String CONTRIBUTIONS_SHORTCUT = "CONTRIBUTIONS";
     private static final String SCAN_SHORTCUT = "SCAN";
     private static final String BARCODE_SHORTCUT = "BARCODE";
-    private static final String IS_USER_LOGIN = "user";
-    private static final String IS_USER_SESSION = "user_session";
     boolean isConnected;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -151,9 +148,7 @@ public class MainActivity extends BaseActivity implements CustomTabActivityHelpe
 
         shakePreference = PreferenceManager.getDefaultSharedPreferences(this);
 
-        /*
-        scanOnShake = shakePreference.getBoolean("shakeScanMode", false);
-        */
+
 
         Utils.hideKeyboard(this);
 
@@ -191,18 +186,10 @@ public class MainActivity extends BaseActivity implements CustomTabActivityHelpe
 
         setShakePreferences();
 
-        fragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
-            @Override
-            public void onBackStackChanged() {
-
-            }
-        });
+        fragmentManager.addOnBackStackChangedListener(() -> {});
 
         boolean isOpenOfflineEdit = extras != null && extras.getBoolean("openOfflineEdit");
         if (isOpenOfflineEdit) {
-            fragmentManager.beginTransaction().replace(R.id.fragment_container, new
-                    OfflineEditFragment()).commit();
-            getSupportActionBar().setTitle(getResources().getString(R.string.offline_edit_drawer));
         } else {
             fragmentManager.beginTransaction().replace(R.id.fragment_container, new HomeFragment
                     ()).commit();
@@ -361,9 +348,6 @@ public class MainActivity extends BaseActivity implements CustomTabActivityHelpe
                             break;
                         case ITEM_PREFERENCES:
                             fragment = new PreferencesFragment();
-                            break;
-                        case ITEM_OFFLINE:
-                            fragment = new OfflineEditFragment();
                             break;
                         case ITEM_ABOUT:
                             CustomTabActivityHelper.openCustomTab(MainActivity.this,
