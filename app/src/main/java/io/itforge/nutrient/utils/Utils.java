@@ -102,11 +102,6 @@ public class Utils {
         }
     }
 
-    /**
-     * "Closes" the specified tags on a Spannable by updating the spans to be
-     * endpoint-exclusive so that future text appended to the end will not take
-     * on the same styling. Do not call this method directly.
-     */
     private static void closeTags(Spannable text, Object[] tags) {
         int len = text.length();
         for (Object tag : tags) {
@@ -118,10 +113,6 @@ public class Utils {
         }
     }
 
-    /**
-     * Returns a CharSequence that applies boldface to the concatenation
-     * of the specified CharSequence objects.
-     */
     public static CharSequence bold(CharSequence... content) {
         return apply(content, new StyleSpan(Typeface.BOLD));
     }

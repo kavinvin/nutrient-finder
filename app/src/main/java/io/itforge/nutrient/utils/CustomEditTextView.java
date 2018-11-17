@@ -10,10 +10,6 @@ import android.util.AttributeSet;
 
 import io.itforge.nutrient.R;
 
-/**
- * Based on
- * <a href="http://stackoverflow.com/questions/35761636/is-it-possible-to-use-vectordrawable-in-buttons-and-textviews-using-androiddraw></a>
- */
 public class CustomEditTextView extends AppCompatEditText {
 
     public CustomEditTextView(Context context) {

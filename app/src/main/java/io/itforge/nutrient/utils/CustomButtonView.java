@@ -10,11 +10,6 @@ import android.util.AttributeSet;
 
 import io.itforge.nutrient.R;
 
-/**
- * Based on
- * <a href="http://stackoverflow.com/questions/35761636/is-it-possible-to-use-vectordrawable-in-buttons-and-textviews-using-androiddraw></a>
- * and <a href="https://medium.com/@elye.project/better-way-of-declaring-custom-view-attributes-23f876c28534>this</a>
- */
 
 public class CustomButtonView extends AppCompatButton {
 
