@@ -203,18 +203,16 @@ public class MainActivity extends BaseActivity implements CustomTabActivityHelpe
         customTabsIntent = CustomTabsHelper.getCustomTabsIntent(getBaseContext(),
         customTabActivityHelper.getSession());
 
-
-        // Create the AccountHeader
         headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withTranslucentStatusBar(true)
-                .withHeaderBackground(R.drawable.header)
+                .withHeaderBackground(R.drawable.account_header)
                 .addProfiles(profile)
                 .withOnAccountHeaderProfileImageListener(new AccountHeader.OnAccountHeaderProfileImageListener() {
                     @Override
                     public boolean onProfileImageClick(View view, IProfile profile, boolean current) {
 
-                        SharedPreferences preferences = getSharedPreferences("login", 0);
+                        SharedPreferences preferences = getSharedPreferences("login", MODE_PRIVATE);
                         String userLogin = preferences.getString("user", null);
                         boolean isConnected = userLogin != null;
                         if (!isConnected) {
