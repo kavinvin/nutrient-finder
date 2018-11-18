@@ -570,15 +570,6 @@
             tools:visibility="visible" />
 
         <Button
-            android:id="@+id/btn_other_pictures"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/take_more_pictures"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/other_image_progress_text" />
-
-        <Button
             android:id="@+id/btn_next"
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -587,8 +578,7 @@
             android:clickable="true"
             android:focusable="true"
             android:text="@string/next"
-            android:textColor="@color/white"
-            app:layout_constraintTop_toBottomOf="@id/btn_other_pictures" />
+            android:textColor="@color/white" />
 
     </android.support.constraint.ConstraintLayout>
 

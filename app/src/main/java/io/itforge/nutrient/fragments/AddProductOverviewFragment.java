@@ -158,8 +158,6 @@ public class AddProductOverviewFragment extends BaseFragment {
     NachoTextView stores;
     @BindView(R.id.countries_where_sold)
     NachoTextView countriesWhereSold;
-    @BindView(R.id.btn_other_pictures)
-    Button otherImage;
     @BindView(R.id.other_image_progress)
     ProgressBar otherImageProgress;
     @BindView(R.id.other_image_progress_text)
@@ -221,9 +219,6 @@ public class AddProductOverviewFragment extends BaseFragment {
                 preFillValues();
             }
             barcode.append(" " + code);
-            if (BuildConfig.FLAVOR.equals("obf") || BuildConfig.FLAVOR.equals("opf")) {
-                otherImage.setVisibility(View.GONE);
-            }
         } else {
             Toast.makeText(activity, R.string.error_adding_product_details, Toast.LENGTH_SHORT).show();
             activity.finish();
@@ -629,16 +624,6 @@ public class AddProductOverviewFragment extends BaseFragment {
             EasyImage.openCamera(this, 0);
         }
         return true;
-    }
-
-    @OnClick(R.id.btn_other_pictures)
-    void addOtherImage() {
-        frontImage = false;
-        if (ContextCompat.checkSelfPermission(activity, CAMERA) != PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity, new String[]{CAMERA}, MY_PERMISSIONS_REQUEST_CAMERA);
-        } else {
-            EasyImage.openCamera(this, 0);
-        }
     }
 
     /**

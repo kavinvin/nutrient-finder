@@ -125,8 +125,6 @@ public class SummaryProductFragment extends BaseFragment implements CustomTabAct
     ImageView mImageFront;
     @BindView(R.id.addPhotoLabel)
     TextView addPhotoLabel;
-    @BindView(R.id.buttonMorePictures)
-    Button addMorePicture;
     @BindView(R.id.imageGrade)
     ImageView img;
     @BindView(R.id.nova_group)
@@ -351,7 +349,6 @@ public class SummaryProductFragment extends BaseFragment implements CustomTabAct
         // if the device does not have a camera, hide the button
         try {
             if (!Utils.isHardwareCameraInstalled(getContext())) {
-                addMorePicture.setVisibility(View.GONE);
             }
         } catch (NullPointerException e) {
             if (BuildConfig.DEBUG) Log.i(getClass().getSimpleName(), e.toString());
@@ -634,45 +631,6 @@ public class SummaryProductFragment extends BaseFragment implements CustomTabAct
     @Override
     public void onCustomTabsDisconnected() {
         img.setClickable(false);
-    }
-
-    @OnClick(R.id.buttonMorePictures)
-    public void takeMorePicture() {
-        try {
-            if (Utils.isHardwareCameraInstalled(getContext())) {
-                if (ContextCompat.checkSelfPermission(getActivity(), CAMERA) != PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(getActivity(), new String[]{CAMERA}, MY_PERMISSIONS_REQUEST_CAMERA);
-                } else {
-                    sendOther = true;
-                    EasyImage.openCamera(this, 0);
-                }
-            } else {
-                if (ContextCompat.checkSelfPermission(this.getContext(), READ_EXTERNAL_STORAGE) != PERMISSION_GRANTED
-                        && ContextCompat.checkSelfPermission(this.getContext(), WRITE_EXTERNAL_STORAGE) != PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(this.getActivity(), new String[]{READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE}, Utils.MY_PERMISSIONS_REQUEST_STORAGE);
-                } else {
-                    sendOther = true;
-                    EasyImage.openGallery(this, 0, false);
-                }
-            }
-
-            if (ContextCompat.checkSelfPermission(this.getContext(), READ_EXTERNAL_STORAGE) != PERMISSION_GRANTED
-                    && ContextCompat.checkSelfPermission(this.getContext(), WRITE_EXTERNAL_STORAGE) != PERMISSION_GRANTED) {
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this.getActivity(), READ_EXTERNAL_STORAGE)
-                        || ActivityCompat.shouldShowRequestPermissionRationale(this.getActivity(), WRITE_EXTERNAL_STORAGE)) {
-                    new MaterialDialog.Builder(this.getContext())
-                            .title(R.string.action_about)
-                            .content(R.string.permission_storage)
-                            .neutralText(R.string.txtOk)
-                            .onNeutral((dialog, which) -> ActivityCompat.requestPermissions(this.getActivity(), new String[]{READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE}, Utils.MY_PERMISSIONS_REQUEST_STORAGE))
-                            .show();
-                } else {
-                    ActivityCompat.requestPermissions(this.getActivity(), new String[]{READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE}, Utils.MY_PERMISSIONS_REQUEST_STORAGE);
-                }
-            }
-        } catch (NullPointerException e) {
-            Log.i(getClass().getSimpleName(), e.toString());
-        }
     }
 
     @OnClick(R.id.imageViewFront)

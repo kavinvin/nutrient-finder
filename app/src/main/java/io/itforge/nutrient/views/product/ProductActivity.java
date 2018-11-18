@@ -133,14 +133,6 @@ public class ProductActivity extends BaseActivity implements OnRefreshListener
 
 			switch( item.getItemId() )
 			{
-//                case R.id.bookmark:
-//                     Implementation of bookmark will be here
-//                    Toast.makeText(ProductActivity.this,"Bookmark",Toast.LENGTH_SHORT).show();
-//                    break;
-//                case R.id.translation:
-//                     Implementation of Translation will be here
-//                    Toast.makeText(ProductActivity.this,"Translation",Toast.LENGTH_SHORT).show();
-//                    break;
 				case R.id.edit_product:
 					final SharedPreferences settings = getSharedPreferences( "login", 0 );
 					final String login = settings.getString( "user", "" );
@@ -164,10 +156,6 @@ public class ProductActivity extends BaseActivity implements OnRefreshListener
 						intent.putExtra( "edit_product", mState.getProduct() );
 						startActivity( intent );
 					}
-					break;
-
-				case R.id.history_bottom_nav:
-					startActivity( new Intent( this, HistoryScanActivity.class ) );
 					break;
 
 				case R.id.search_product:
