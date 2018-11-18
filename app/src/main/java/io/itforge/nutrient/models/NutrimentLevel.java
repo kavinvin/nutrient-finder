@@ -11,9 +11,6 @@ import io.itforge.nutrient.R;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
-/**
- * @author herau
- */
 public enum NutrimentLevel {
     LOW, MODERATE, HIGH;
 

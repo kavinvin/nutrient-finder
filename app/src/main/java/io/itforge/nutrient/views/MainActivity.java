@@ -163,26 +163,11 @@ public class MainActivity extends BaseActivity implements CustomTabActivityHelpe
         mOfflineSavedProductDao = Utils.getAppDaoSession(MainActivity.this).getOfflineSavedProductDao();
         numberOFSavedProducts = mOfflineSavedProductDao.loadAll().size();
 
-// Get the user preference for scan on shake feature and open ContinuousScanActivity if the user has enabled the feature
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         if (mSensorManager != null) {
             mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         }
         mShakeDetector = new ShakeDetector();
-
-        /*
-        Log.i("Shake", String.valueOf(scanOnShake));
-        mShakeDetector.setOnShakeListener(new ShakeDetector.OnShakeDetected() {
-            @Override
-            public void onShake(int count) {
-
-                if (scanOnShake) {
-                    Utils.scan(MainActivity.this);
-                }
-
-            }
-        });
-        */
 
         setShakePreferences();
 
@@ -196,7 +181,6 @@ public class MainActivity extends BaseActivity implements CustomTabActivityHelpe
             getSupportActionBar().setTitle(getResources().getString(R.string.home_drawer));
         }
 
-        // chrome custom tab init
         customTabActivityHelper = new CustomTabActivityHelper();
         customTabActivityHelper.setConnectionCallback(this);
 
@@ -228,19 +212,16 @@ public class MainActivity extends BaseActivity implements CustomTabActivityHelpe
                         return false;
                     }
                 })
-                .withOnAccountHeaderSelectionViewClickListener(new AccountHeader.OnAccountHeaderSelectionViewClickListener() {
-                    @Override
-                    public boolean onClick(View view, IProfile profile) {
-                        SharedPreferences preferences = getSharedPreferences("login", 0);
-                        String userLogin = preferences.getString("user", null);
-                        boolean isConnected = userLogin != null;
-                        if (!isConnected) {
-                            startActivity(new Intent(MainActivity.this, LoginActivity.class));
-
-                        }
-                        return false;
+                .withOnAccountHeaderSelectionViewClickListener((view, profile12) -> {
+                    SharedPreferences preferences = getSharedPreferences("login", 0);
+                    String userLogin = preferences.getString("user", null);
+                    boolean isConnected = userLogin != null;
+                    if (!isConnected) {
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
 
                     }
+                    return false;
+
                 })
                 .withSelectionListEnabledForSingleProfile(false)
                 .withOnAccountHeaderListener((view, profile1, current) -> {
@@ -251,13 +232,11 @@ public class MainActivity extends BaseActivity implements CustomTabActivityHelpe
                         }
                     }
 
-                    //false if you have not consumed the event and it should close the drawer
                     return false;
                 })
                 .withSavedInstance(savedInstanceState)
                 .build();
 
-        // Add Manage Account profile if the user is connected
         SharedPreferences preferences = getSharedPreferences("login", 0);
         String userLogin = preferences.getString(getResources().getString(R.string.user), null);
         String userSession = preferences.getString("user_session", null);
@@ -272,12 +251,12 @@ public class MainActivity extends BaseActivity implements CustomTabActivityHelpe
             headerResult.addProfiles(getProfileSettingDrawerItem());
         }
         primaryDrawerItem = createOfflineEditDrawerItem();
-        //Create the drawer
+
         result = new DrawerBuilder()
                 .withActivity(this)
                 .withToolbar(toolbar)
                 .withHasStableIds(true)
-                .withAccountHeader(headerResult) //set the AccountHeader we created earlier for the header
+                .withAccountHeader(headerResult)
                 .withOnDrawerListener(new Drawer.OnDrawerListener() {
                     @Override
                     public void onDrawerOpened(View drawerView) {
@@ -300,19 +279,8 @@ public class MainActivity extends BaseActivity implements CustomTabActivityHelpe
                         new PrimaryDrawerItem().withName(R.string.search_by_barcode_drawer).withIcon(GoogleMaterial.Icon.gmd_dialpad).withIdentifier(ITEM_SEARCH_BY_CODE),
                         new PrimaryDrawerItem().withName(R.string.search_by_category).withIcon(GoogleMaterial.Icon.gmd_filter_list).withIdentifier(ITEM_CATEGORIES).withSelectable(false),
                         new PrimaryDrawerItem().withName(R.string.scan_search).withIcon(R.drawable.barcode_grey_24dp).withIdentifier(ITEM_SCAN).withSelectable(false),
-//                        new PrimaryDrawerItem().withName(R.string.advanced_search_title).withIcon(GoogleMaterial.Icon.gmd_insert_chart).withIdentifier(ITEM_ADVANCED_SEARCH).withSelectable(false),
-//                        new PrimaryDrawerItem().withName(R.string.scan_history_drawer).withIcon(GoogleMaterial.Icon.gmd_history).withIdentifier(ITEM_HISTORY).withSelectable(false),
                         new SectionDrawerItem().withName(R.string.user_drawer).withIdentifier(USER_ID),
-//                        new PrimaryDrawerItem().withName(getString(R.string.action_contributes)).withIcon(GoogleMaterial.Icon.gmd_rate_review).withIdentifier(ITEM_MY_CONTRIBUTIONS).withSelectable(false),
-//                        new PrimaryDrawerItem().withName(R.string.products_to_be_completed).withIcon(GoogleMaterial.Icon.gmd_edit).withIdentifier(ITEM_INCOMPLETE_PRODUCTS).withSelectable(false),
-//                        new PrimaryDrawerItem().withName(R.string.alert_drawer).withIcon(GoogleMaterial.Icon.gmd_warning).withIdentifier(ITEM_ALERT),
-//                        new PrimaryDrawerItem().withName(R.string.action_preferences).withIcon(GoogleMaterial.Icon.gmd_settings).withIdentifier(ITEM_PREFERENCES),
                         new DividerDrawerItem().withIdentifier(ITEM_MY_CONTRIBUTIONS)
-//                        primaryDrawerItem,
-//                        new DividerDrawerItem(),
-//                        new PrimaryDrawerItem().withName(R.string.action_discover).withIcon(GoogleMaterial.Icon.gmd_info).withIdentifier(ITEM_ABOUT).withSelectable(false),
-//                        new PrimaryDrawerItem().withName(R.string.contribute).withIcon(R.drawable.ic_group_grey_24dp).withIdentifier(ITEM_CONTRIBUTE).withSelectable(false),
-//                        new PrimaryDrawerItem().withName(R.string.open_beauty_drawer).withIcon(GoogleMaterial.Icon.gmd_shop).withIdentifier(ITEM_OBF).withSelectable(false)
                 )
                 .withOnDrawerItemClickListener((view, position, drawerItem) -> {
 
