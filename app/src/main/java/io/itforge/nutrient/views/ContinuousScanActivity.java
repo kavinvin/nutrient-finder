@@ -201,7 +201,7 @@ public class ContinuousScanActivity extends android.support.v7.app.AppCompatActi
                                 fab_status.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.blue)));
                                 fab_status.setImageDrawable(ContextCompat.getDrawable(ContinuousScanActivity.this, R.drawable.ic_mode_edit_black));
                                 fab_status.setOnClickListener(v -> {
-                                    final SharedPreferences settings = getSharedPreferences("login", 0);
+                                    final SharedPreferences settings = getSharedPreferences("login", MODE_PRIVATE);
                                     final String login = settings.getString("user", "");
                                     if (login.isEmpty()) {
                                         new MaterialDialog.Builder(ContinuousScanActivity.this)
@@ -505,7 +505,7 @@ public class ContinuousScanActivity extends android.support.v7.app.AppCompatActi
         mHistoryProductDao = Utils.getAppDaoSession(ContinuousScanActivity.this).getHistoryProductDao();
         mOfflineSavedProductDao = Utils.getAppDaoSession(ContinuousScanActivity.this).getOfflineSavedProductDao();
 
-        sp = getSharedPreferences("camera", 0);
+        sp = getSharedPreferences("camera", MODE_PRIVATE);
         mRing = sp.getBoolean("ring", false);
         mFlash = sp.getBoolean("flash", false);
         mAutofocus = sp.getBoolean("focus", true);

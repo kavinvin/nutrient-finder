@@ -17,13 +17,13 @@ public class DatabaseHelper extends DaoMaster.OpenHelper {
     public DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory) {
         super(context, name, factory);
 
-        settings = context.getSharedPreferences("prefs", 0);
+        settings = context.getSharedPreferences("prefs", Context.MODE_PRIVATE);
     }
 
     public DatabaseHelper(Context context, String name) {
         super(context, name);
 
-        settings = context.getSharedPreferences("prefs", 0);
+        settings = context.getSharedPreferences("prefs", Context.MODE_PRIVATE);
     }
 
 

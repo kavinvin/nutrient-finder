@@ -213,7 +213,7 @@ public class MainActivity extends BaseActivity implements CustomTabActivityHelpe
                     }
                 })
                 .withOnAccountHeaderSelectionViewClickListener((view, profile12) -> {
-                    SharedPreferences preferences = getSharedPreferences("login", 0);
+                    SharedPreferences preferences = getSharedPreferences("login", MODE_PRIVATE);
                     String userLogin = preferences.getString("user", null);
                     boolean isConnected = userLogin != null;
                     if (!isConnected) {
@@ -237,7 +237,7 @@ public class MainActivity extends BaseActivity implements CustomTabActivityHelpe
                 .withSavedInstance(savedInstanceState)
                 .build();
 
-        SharedPreferences preferences = getSharedPreferences("login", 0);
+        SharedPreferences preferences = getSharedPreferences("login", MODE_PRIVATE);
         String userLogin = preferences.getString(getResources().getString(R.string.user), null);
         String userSession = preferences.getString("user_session", null);
         boolean isUserConnected = userLogin != null && userSession != null;
@@ -481,7 +481,7 @@ public class MainActivity extends BaseActivity implements CustomTabActivityHelpe
         Utils.scheduleProductUploadJob(this);
 
         //Adds nutriscore and quantity values in old history for schema 5 update
-        mSharedPref = getApplicationContext().getSharedPreferences("prefs", 0);
+        mSharedPref = getApplicationContext().getSharedPreferences("prefs", MODE_PRIVATE);
         boolean isOldHistoryDataSynced = mSharedPref.getBoolean("is_old_history_data_synced", false);
         if (!isOldHistoryDataSynced && Utils.isNetworkConnected(this)) {
             OpenFoodAPIClient apiClient = new OpenFoodAPIClient(this);
@@ -516,7 +516,7 @@ public class MainActivity extends BaseActivity implements CustomTabActivityHelpe
     }
 
     private void myContributions() {
-        SharedPreferences preferences1 = getSharedPreferences("login", 0);
+        SharedPreferences preferences1 = getSharedPreferences("login", MODE_PRIVATE);
         String userLogin1 = preferences1.getString("user", null);
         userContributeUri = Uri.parse(getString(R.string.website_contributor) + userLogin1);
         if (isNotEmpty(userLogin1)) {
@@ -538,7 +538,7 @@ public class MainActivity extends BaseActivity implements CustomTabActivityHelpe
     }
 
     private IProfile<ProfileSettingDrawerItem> getProfileSettingDrawerItem() {
-        SharedPreferences preferences = getSharedPreferences("login", 0);
+        SharedPreferences preferences = getSharedPreferences("login", MODE_PRIVATE);
         String userLogin = preferences.getString("user", null);
         String userSession = preferences.getString("user_session", null);
         userAccountUri = Uri.parse(getString(R.string.website) + "cgi/user.pl?type=edit&userid=" + userLogin + "&user_id=" + userLogin +
@@ -679,7 +679,7 @@ public class MainActivity extends BaseActivity implements CustomTabActivityHelpe
     }
 
     private IProfile<ProfileDrawerItem> getUserProfile() {
-        String userLogin = getSharedPreferences("login", 0)
+        String userLogin = getSharedPreferences("login", MODE_PRIVATE)
                 .getString("user", getResources().getString(R.string.txt_anonymous));
 
         return new ProfileDrawerItem()

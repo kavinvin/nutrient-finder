@@ -42,8 +42,8 @@ public class UploadService extends IntentService {
             manager.cancel(9);
 
             mSendProductDao = Utils.getAppDaoSession(getApplicationContext()).getSendProductDao();
-            final SharedPreferences settingsLogin = getApplicationContext().getSharedPreferences("login", 0);
-            final SharedPreferences settingsUsage = getApplicationContext().getSharedPreferences("usage", 0);
+            final SharedPreferences settingsLogin = getApplicationContext().getSharedPreferences("login", MODE_PRIVATE);
+            final SharedPreferences settingsUsage = getApplicationContext().getSharedPreferences("usage", MODE_PRIVATE);
             saveItems = new ArrayList<>();
             loginS = settingsLogin.getString("user", "");
             passS = settingsLogin.getString("pass", "");

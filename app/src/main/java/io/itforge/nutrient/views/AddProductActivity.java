@@ -311,7 +311,7 @@ public class AddProductActivity extends AppCompatActivity {
         if (BuildConfig.FLAVOR.equals("off") || BuildConfig.FLAVOR.equals("opff")) {
             addProductNutritionFactsFragment.getDetails();
         }
-        final SharedPreferences settings = getSharedPreferences("login", 0);
+        final SharedPreferences settings = getSharedPreferences("login", MODE_PRIVATE);
         final String login = settings.getString("user", "");
         final String password = settings.getString("pass", "");
         if (!login.isEmpty() && !password.isEmpty()) {
@@ -555,7 +555,7 @@ public class AddProductActivity extends AppCompatActivity {
             imgMap.put("imgupload_front\"; filename=\"front_" + getProductLanguage() + ".png\"", image);
 
             // Attribute the upload to the connected user
-            final SharedPreferences settings = getSharedPreferences("login", 0);
+            final SharedPreferences settings = getSharedPreferences("login", MODE_PRIVATE);
             final String login = settings.getString("user", "");
             final String password = settings.getString("pass", "");
             if (!login.isEmpty() && !password.isEmpty()) {
@@ -670,7 +670,7 @@ public class AddProductActivity extends AppCompatActivity {
             imgMap.put("imgupload_ingredients\"; filename=\"ingredients_" + getProductLanguage() + ".png\"", image);
 
             // Attribute the upload to the connected user
-            final SharedPreferences settings = getSharedPreferences("login", 0);
+            final SharedPreferences settings = getSharedPreferences("login", MODE_PRIVATE);
             final String login = settings.getString("user", "");
             final String password = settings.getString("pass", "");
             if (!login.isEmpty() && !password.isEmpty()) {
@@ -785,7 +785,7 @@ public class AddProductActivity extends AppCompatActivity {
             imgMap.put("imgupload_nutrition\"; filename=\"nutrition_" + getProductLanguage() + ".png\"", image);
 
             // Attribute the upload to the connected user
-            final SharedPreferences settings = getSharedPreferences("login", 0);
+            final SharedPreferences settings = getSharedPreferences("login", MODE_PRIVATE);
             final String login = settings.getString("user", "");
             final String password = settings.getString("pass", "");
             if (!login.isEmpty() && !password.isEmpty()) {
@@ -1034,7 +1034,7 @@ public class AddProductActivity extends AppCompatActivity {
         if (BuildConfig.FLAVOR.equals("off") || BuildConfig.FLAVOR.equals("opff")) {
             addProductNutritionFactsFragment.getAllDetails();
         }
-        final SharedPreferences settings = getSharedPreferences("login", 0);
+        final SharedPreferences settings = getSharedPreferences("login", MODE_PRIVATE);
         final String login = settings.getString("user", "");
         final String password = settings.getString("pass", "");
         if (!login.isEmpty() && !password.isEmpty()) {
@@ -1086,7 +1086,7 @@ public class AddProductActivity extends AppCompatActivity {
         if (image.getImguploadOther() != null)
             imgMap.put("imgupload_other\"; filename=\"other_" + lang + ".png\"", image.getImguploadOther());
         // Attribute the upload to the connected user
-        final SharedPreferences settings = getSharedPreferences("login", 0);
+        final SharedPreferences settings = getSharedPreferences("login", MODE_PRIVATE);
         final String login = settings.getString("user", "");
         final String password = settings.getString("pass", "");
         if (!login.isEmpty() && !password.isEmpty()) {

@@ -134,7 +134,7 @@ public class ProductActivity extends BaseActivity implements OnRefreshListener
 			switch( item.getItemId() )
 			{
 				case R.id.edit_product:
-					final SharedPreferences settings = getSharedPreferences( "login", 0 );
+					final SharedPreferences settings = getSharedPreferences( "login", MODE_PRIVATE );
 					final String login = settings.getString( "user", "" );
 					if( login.isEmpty() )
 					{

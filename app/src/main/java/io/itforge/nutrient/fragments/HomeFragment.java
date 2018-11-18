@@ -1,6 +1,7 @@
 package io.itforge.nutrient.fragments;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -104,7 +105,7 @@ public class HomeFragment extends NavigationBaseFragment {
     }
 
     private void checkUserCredentials() {
-        final SharedPreferences settings = OFFApplication.getInstance().getSharedPreferences("login", 0);
+        final SharedPreferences settings = OFFApplication.getInstance().getSharedPreferences("login", Context.MODE_PRIVATE);
         String login = settings.getString("user", "");
         String password = settings.getString("pass", "");
 

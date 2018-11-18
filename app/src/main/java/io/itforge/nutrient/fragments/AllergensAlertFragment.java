@@ -103,7 +103,7 @@ public class AllergensAlertFragment extends NavigationBaseFragment {
 
 
         mView = view;
-        mSettings = getActivity().getSharedPreferences("prefs", 0);
+        mSettings = getActivity().getSharedPreferences("prefs", Context.MODE_PRIVATE);
         boolean firstRunAlert = mSettings.getBoolean("firstRunAlert", true);
         if (firstRunAlert) {
             new MaterialDialog.Builder(view.getContext())

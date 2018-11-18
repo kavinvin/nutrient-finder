@@ -110,7 +110,7 @@ public class LoginActivity extends BaseActivity implements CustomTabActivityHelp
         customTabActivityHelper.mayLaunchUrl(userLoginUri, null, null);
         createAccount.setEnabled(true);
 
-        final SharedPreferences settings = getSharedPreferences("login", 0);
+        final SharedPreferences settings = getSharedPreferences("login", MODE_PRIVATE);
         String loginS = settings.getString(getResources().getString(R.string.user), getResources().getString(R.string.txt_anonymous));
         if (loginS.equals(getResources().getString(R.string.user))) {
             new MaterialDialog.Builder(this)
@@ -189,7 +189,7 @@ public class LoginActivity extends BaseActivity implements CustomTabActivityHelp
                     Log.e("LOGIN", "Unable to parse the login response page", e);
                 }
 
-                SharedPreferences.Editor editor = context.getSharedPreferences("login", 0).edit();
+                SharedPreferences.Editor editor = context.getSharedPreferences("login", MODE_PRIVATE).edit();
 
                 if (htmlNoParsed == null || htmlNoParsed.contains("Incorrect user name or password.") || htmlNoParsed.contains("See you soon!")) {
 

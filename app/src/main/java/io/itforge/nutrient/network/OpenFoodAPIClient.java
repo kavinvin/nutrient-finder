@@ -392,7 +392,7 @@ public class OpenFoodAPIClient {
             imgMap.put("imgupload_other\"; filename=\"other_" + lang + ".png\"", image.getImguploadOther());
 
         // Attribute the upload to the connected user
-        final SharedPreferences settings = context.getSharedPreferences("login", 0);
+        final SharedPreferences settings = context.getSharedPreferences("login", Context.MODE_PRIVATE);
         final String login = settings.getString("user", "");
         final String password = settings.getString("pass", "");
 
@@ -651,7 +651,7 @@ public class OpenFoodAPIClient {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             if (success) {
-                mActivity.getSharedPreferences("prefs", 0).edit().putBoolean("is_old_history_data_synced", true).apply();
+                mActivity.getSharedPreferences("prefs", Context.MODE_PRIVATE).edit().putBoolean("is_old_history_data_synced", true).apply();
             }
         }
     }
