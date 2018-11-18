@@ -123,18 +123,11 @@ public class ProductActivity extends BaseActivity implements OnRefreshListener
 		SharedPreferences shakePreference = PreferenceManager.getDefaultSharedPreferences( this );
 		scanOnShake = shakePreference.getBoolean( "shakeScanMode", false );
 
-		mShakeDetector.setOnShakeListener( new ShakeDetector.OnShakeDetected()
-		{
-			@Override
-			public void onShake( int count )
-			{
-
-				if( scanOnShake )
-				{
-					Utils.scan( ProductActivity.this );
-				}
-			}
-		} );
+		mShakeDetector.setOnShakeListener(count -> {
+            if(scanOnShake) {
+                Utils.scan(ProductActivity.this);
+            }
+        });
 
 		bottomNavigationView.setOnNavigationItemSelectedListener( item -> {
 
@@ -144,17 +137,6 @@ public class ProductActivity extends BaseActivity implements OnRefreshListener
 //                     Implementation of bookmark will be here
 //                    Toast.makeText(ProductActivity.this,"Bookmark",Toast.LENGTH_SHORT).show();
 //                    break;
-				case R.id.share:
-					String shareUrl = " " + getString( R.string.website_product ) + mState.getProduct().getCode();
-					Intent sharingIntent = new Intent();
-					sharingIntent.setAction( Intent.ACTION_SEND );
-					sharingIntent.setType( "text/plain" );
-					String shareBody = getResources().getString( R.string.msg_share ) + shareUrl;
-					String shareSub = "\n\n";
-					sharingIntent.putExtra( Intent.EXTRA_SUBJECT, shareSub );
-					sharingIntent.putExtra( Intent.EXTRA_TEXT, shareBody );
-					startActivity( Intent.createChooser( sharingIntent, "Share using" ) );
-					break;
 //                case R.id.translation:
 //                     Implementation of Translation will be here
 //                    Toast.makeText(ProductActivity.this,"Translation",Toast.LENGTH_SHORT).show();
@@ -190,9 +172,6 @@ public class ProductActivity extends BaseActivity implements OnRefreshListener
 
 				case R.id.search_product:
 					startActivity( new Intent( this, MainActivity.class ) );
-					break;
-
-				case R.id.empty:
 					break;
 				default:
 					return true;

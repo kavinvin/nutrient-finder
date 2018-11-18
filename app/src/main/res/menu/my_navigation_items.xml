@@ -6,11 +6,6 @@
     <!--android:enabled="true"-->
     <!--android:icon="@drawable/ic_bookmark_white_24dp"-->
     <!--android:title="@string/bookmark" />-->
-    <item
-        android:id="@+id/share"
-        android:enabled="true"
-        android:icon="@drawable/ic_share_black_24dp"
-        android:title="@string/share" />
     <!--<item-->
     <!--android:id="@+id/translation"-->
     <!--android:enabled="true"-->
@@ -34,8 +29,4 @@
         android:icon="@drawable/ic_history_grey_24dp"
         android:title="@string/bottomNav_history" />
 
-    <item
-        android:id="@+id/empty"
-        android:enabled="true"
-        android:title="" />
 </menu>
